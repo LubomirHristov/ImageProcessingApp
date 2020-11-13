@@ -8,11 +8,13 @@ class ImageCard extends Component {
     constructor() {
         super();
         this.state = {
+            imageText: '',
             selectedFile: '',
             selectedFilePreview: null
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.processImage = this.processImage.bind(this);
     }
 
     handleInputChange(event) {
@@ -22,32 +24,29 @@ class ImageCard extends Component {
         })
     }
 
-    submit() {
+    processImage() {
         const data = new FormData()
         data.append('file', this.state.selectedFile)
         console.warn(this.state.selectedFile);
-        let url = "http://localhost:5000/upload";
+        let url = "http://localhost:5000/process";
 
-        axios.post(url, data, { // receive two parameter endpoint url ,form data 
-        })
-            .then(res => { // then print response status
+        axios.post(url, data, {})
+            .then(res => {
                 console.warn(res);
             })
-
     }
 
     render() {
         return (
             <Card style={{ width: '18rem' }}>
-                <Card.Title>Selected image</Card.Title>
+                <input type="file" className="form-control" name="upload_file" onChange={this.handleInputChange} />
                 <Card.Img variant="top" src={this.state.selectedFilePreview} class="img-thumbnail" alt="" />
                 <Card.Body>
+                    <Card.Title>{this.state.selectedFile.name}</Card.Title>
                     <Card.Text>
-                        Some quick example text.
+                        {this.state.imageText}
                     </Card.Text>
-                    <input type="file" className="form-control" name="upload_file" onChange={this.handleInputChange} />
-                    <Button variant="secondary" onClick={() => this.submit()}>Upload</Button>
-                    <Button variant="primary">Process</Button>
+                    <Button variant="primary" onClick={() => this.processImage()}>Process</Button>
                 </Card.Body>
             </Card>
 

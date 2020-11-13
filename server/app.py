@@ -13,17 +13,12 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 cors = CORS(app)
 
 
-@app.route('/process/<image_name>')
-def hello_world(image_name: str) -> str:
-    return image_processing.process_image("uploads/{}".format(image_name))
-
-
 def allowed_file(filename) -> bool:
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-@app.route('/upload', methods=['POST'])
-def upload_image() -> str:
+@app.route('/process', methods=['POST'])
+def process_image() -> str:
     if 'file' not in request.files:
         return 'No file found!'
 
@@ -35,4 +30,7 @@ def upload_image() -> str:
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return 'File uploaded successfully!'
+        image_text = image_processing.process_image(
+            "{}/{}".format(app.config['UPLOAD_FOLDER'], filename))
+        os.remove(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        return image_text
