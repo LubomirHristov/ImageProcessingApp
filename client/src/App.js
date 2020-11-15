@@ -17,6 +17,7 @@ class App extends Component {
         this.addImageCard = this.addImageCard.bind(this);
     }
 
+    // Adds one slot for an image
     addImageCard() {
         this.setState({
             imageCards: this.state.imageCards + 1

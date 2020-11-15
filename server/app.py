@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_cors import CORS
-from config import DevelopmentConfig, TestingConfig, ProductionConfig
+from config.app_config import DevelopmentConfig, TestingConfig, ProductionConfig
 
 
 def create_app(config_class=ProductionConfig) -> object:
