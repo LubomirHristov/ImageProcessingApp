@@ -1,23 +1,9 @@
 import os
 import image_processing
 from flask import current_app as app, request
+from constants import ALLOWED_EXTENSIONS
+from helpers import allowed_file
 from werkzeug.utils import secure_filename
-
-
-ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg"}
-
-
-def allowed_file(filename: str) -> bool:
-    """Check if the file extension matched an image extension
-
-    Args:
-        filename (str): The name of the file
-
-    Returns:
-        bool: if the file is an image
-    """
-
-    return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 @app.route("/process", methods=["POST"])
@@ -40,7 +26,7 @@ def process_image() -> str:
         return "Empty filename!"
 
     # Check if file type is valid
-    if not allowed_file(file.filename):
+    if not allowed_file(filename=file.filename, allowed_extensions=ALLOWED_EXTENSIONS):
         return "Invalid file type!"
 
     if file:
