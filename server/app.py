@@ -34,3 +34,7 @@ def process_image() -> str:
             "{}/{}".format(app.config['UPLOAD_FOLDER'], filename))
         os.remove(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         return image_text
+
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0')
