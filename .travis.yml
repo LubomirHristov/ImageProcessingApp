@@ -4,5 +4,6 @@ install:
   - pip install -r server/requirements.txt
 # command to run tests
 script:
+  - cd server/
   - python -m pytest server/tests/
   - black server/*.py --check
