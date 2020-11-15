@@ -5,5 +5,5 @@ install:
 # command to run tests
 script:
   - cd server/
-  - python -m pytest server/tests/
-  - black server/*.py --check
+  - python -m pytest tests/
+  - black *.py --check
