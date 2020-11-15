@@ -4,8 +4,6 @@ A simple application that transforms images to text.
 
 ## Description
 
----
-
 ### Frontend
 
 - Consists of a button to add images and a list of image cards
@@ -29,8 +27,6 @@ Docker Engine version **18.06.0** and higher.
 
 ## Run
 
----
-
 In the project root directory:
 
 ```bash
@@ -40,8 +36,6 @@ Access 127.0.0.1:3001 to view the application
 
 ## Tests
 
----
-
 ```bash
 pytest server/tests
 ```
@@ -49,8 +43,6 @@ pytest server/tests
 Travis CI is used to run tests on git push.
 
 ## Future improvements
-
----
 
 - Write frontend tests
 - Some UI changes  
