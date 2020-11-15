@@ -12,6 +12,7 @@ def create_app(config_class=ProductionConfig) -> object:
     Returns:
         object: the appliation
     """
+
     app = Flask(__name__)
     app.config.from_object(config_class)
     cors = CORS(app)

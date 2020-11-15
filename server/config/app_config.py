@@ -1,14 +1,11 @@
 import os
 
-# folder path where images will be stored temporarily
-UPLOAD_FOLDER = "./uploads"
-
 
 class Config(object):
     DEBUG = False
     TESTING = False
     CSRF_ENABLED = True
-    UPLOAD_FOLDER = UPLOAD_FOLDER
+    UPLOAD_FOLDER = "./tmp"
     SECRET_KEY = "this-really-needs-to-be-changed"
 
 
