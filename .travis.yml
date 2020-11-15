@@ -1,0 +1,8 @@
+language: python
+# command to install dependencies
+install:
+  - pip install -r server/requirements.txt
+# command to run tests
+script:
+  - python -m pytest server/tests/
+  - black server/*.py --check
