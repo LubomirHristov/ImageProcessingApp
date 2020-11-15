@@ -6,6 +6,22 @@ body, html {
     background-repeat: repeat-y
 }
 
+h1 {
+    margin: 1rem 0;
+    color: white
+}
+
+.addCardButton {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.imageCard {
+    display: flex;
+    justify-content: center;
+}
+
 ::-webkit-scrollbar {
     width: 0px;
     background: transparent; /* make scrollbar transparent */

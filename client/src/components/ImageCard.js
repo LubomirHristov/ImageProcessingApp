@@ -3,7 +3,6 @@ import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
-import Scroll from './Scroll';
 import './ImageCard.css';
 
 class ImageCard extends Component {
@@ -21,6 +20,7 @@ class ImageCard extends Component {
         this.processImage = this.processImage.bind(this);
     }
 
+    // Sets image preview
     handleInputChange(event) {
         this.setState({
             imageText: '',
@@ -29,13 +29,13 @@ class ImageCard extends Component {
         })
     }
 
+    // Processes the image and updates the image text
     processImage() {
         this.setState({
             textIsLoading: true
         })
         const data = new FormData()
         data.append('file', this.state.selectedFile)
-        console.warn(this.state.selectedFile);
         let url = "http://localhost:5000/process";
 
         axios.post(url, data, {})
@@ -49,16 +49,15 @@ class ImageCard extends Component {
 
     render() {
         return (
-            <Card style={{ height: '25rem', width: '18rem', marginTop: '1rem' }}>
-                <input type="file" className="form-control" name="upload_file" style={{ padding: '.175rem .75rem' }} onChange={this.handleInputChange} />
-                <img height="200" width="300" src={this.state.selectedFilePreview} className="img-thumbnail" alt="" style={{ maxHeight: '200px' }} />
-                <Card.Body style={{ paddingTop: '0.5rem' }}>
+            <Card>
+                <input type="file" className="form-control" name="upload_file" onChange={this.handleInputChange} />
+                <img height="200" width="300" src={this.state.selectedFilePreview} className="img-thumbnail img-preview" alt="" />
+                <Card.Body>
                     <Card.Title>Image text:</Card.Title>
-                    <Card.Text style={{ overflow: 'scroll', height: '70%' }}>
+                    <Card.Text>
                         {this.state.textIsLoading ? <Spinner animation="border" /> : this.state.imageText}
                     </Card.Text>
-                    <Button variant="primary" style={{ position: 'absolute', bottom: '1rem' }} onClick={() => this.processImage()}>Process</Button>
-
+                    <Button className="process-button" variant="primary" onClick={() => this.processImage()}>Process</Button>
                 </Card.Body>
             </Card>
 
